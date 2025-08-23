@@ -44,13 +44,14 @@ const originalCardList = [
 ]
 
 function App() {
-  const listSize = 5;
+  const listSize = 3;
   const [cardList, setCardList] = useState(originalCardList)
   const [displayedCards, setDisplayedCards] = useState(getRandomPermutationSizeK(cardList, listSize));
   const [isGameOver, setIsGameOver] = useState(false);
+  const [isGameCompletedSuccessfully, setIsGameCompletedSuccessfully] = useState(false);
   const [score, setScore] = useState(0);
   const [maxScore, setMaxScore] = useState(0);
-
+  
   function handleClick(clickedId){
     console.log(`Clicked at item ${displayedCards.find((item) => item.id === clickedId).name}`);
 
@@ -71,6 +72,13 @@ function App() {
     }
 
   }
+  useEffect(() => {
+    if(score == originalCardList.length){
+      setIsGameOver(true);
+      setIsGameCompletedSuccessfully(true);
+    }
+
+  }, [score])
 
   useEffect(() => {
     setDisplayedCards(getRandomPermutationSizeK(cardList, listSize))
@@ -84,6 +92,7 @@ function App() {
   function resetStates(){
     setCardList(originalCardList);
     setIsGameOver(false);
+    setIsGameCompletedSuccessfully(false);
     setScore(0);
 
   }
@@ -95,7 +104,7 @@ function App() {
         <h3>Score: {score}, Max Score: {maxScore}</h3>
       </header>
       <main>
-        {isGameOver?<GameOver restartGame={restartGame}></GameOver>:null}
+        {isGameOver?<GameOver restartGame={restartGame} isGameCompletedSuccessfully={isGameCompletedSuccessfully}></GameOver>:null}
         <CardDeck cardList={displayedCards} handleClick={handleClick} isGameOver={isGameOver}></CardDeck>
         <MusicController></MusicController>
       </main>
