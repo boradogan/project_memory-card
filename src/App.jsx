@@ -10,7 +10,7 @@ import './App.css'
 import { originalCardList } from './api/originalCardList'
 
 function App() {
-  const listSize = 3;
+  const listSize = 4;
   const [cardList, setCardList] = useState(originalCardList)
   const [displayedCards, setDisplayedCards] = useState(getRandomPermutationSizeK(cardList, listSize));
   const [isGameOver, setIsGameOver] = useState(false);
@@ -85,7 +85,7 @@ function App() {
         <div className="title">
           <h1>{isGameOver? 'Game Over': 'Kızılcık Şerbo'}</h1>
 
-          <h3>Score: {score}, Max Score: {maxScore}</h3>
+          <h3>Score: {score}/{cardList.length}, Max Score: {maxScore}/{cardList.length}</h3>
 
         </div>
       </header>
