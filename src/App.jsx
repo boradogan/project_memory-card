@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { CardDeck } from './components/CardDeck'
 import { GameOver } from './components/GameOver'
 import { MusicController } from './components/Sound'
-import Logo from './assets/kizilcik-serbeti.svg'
+
 
 import { getRandomPermutationSizeK } from './utils/combinatorics'
 import './App.css'
