@@ -6,6 +6,13 @@
   text-align: center;
   box-sizing: border-box;
 }
+header{
+  display: grid;
+  grid-template-columns: 100px 1fr 100px;
+}
+header .title {
+  grid-column: 2/3;
+}
 .card-deck{
   display: flex;
   justify-content: space-around;

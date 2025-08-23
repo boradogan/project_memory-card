@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { CardDeck } from './components/CardDeck'
 import { GameOver } from './components/GameOver'
 import { MusicController } from './components/Sound'
+import Logo from './assets/kizilcik-serbeti.svg'
 
 import { getRandomPermutationSizeK } from './utils/combinatorics'
 import './App.css'
@@ -65,13 +66,18 @@ function App() {
   return (
     <>
       <header>
-        <h1>{isGameOver? 'Game Over': 'Kızılcık Şerbo'}</h1>
-        <h3>Score: {score}, Max Score: {maxScore}</h3>
+        <MusicController></MusicController>
+        <div className="title">
+          <h1>{isGameOver? 'Game Over': 'Kızılcık Şerbo'}</h1>
+
+          <h3>Score: {score}, Max Score: {maxScore}</h3>
+
+        </div>
       </header>
       <main>
         {isGameOver?<GameOver restartGame={restartGame} isGameCompletedSuccessfully={isGameCompletedSuccessfully}></GameOver>:null}
         <CardDeck cardList={displayedCards} handleClick={handleClick} isGameOver={isGameOver}></CardDeck>
-        <MusicController></MusicController>
+        
       </main>
     </>
   )

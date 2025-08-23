@@ -24,7 +24,7 @@ export function MusicController() {
       <audio ref={audioRef} src={SoundTrack} loop />
       
       <button onClick={togglePlayPause}>
-        {isPlaying ? 'Pause' : 'Play'}
+        {isPlaying ? 'Pause music' : 'Play music'}
       </button>
     </div>
   );
