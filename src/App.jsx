@@ -10,6 +10,7 @@ import './App.css'
 import { originalCardList } from './api/originalCardList'
 
 function App() {
+  console.log('rendering app')
   const listSize = 4;
   const [cardList, setCardList] = useState(originalCardList)
   const [displayedCards, setDisplayedCards] = useState(getRandomPermutationSizeK(cardList, listSize));
@@ -31,10 +32,9 @@ function App() {
     }
 
     handleScoreIncrease(score);
-
-    setCardList(
-      updatedClickedPerson(cardList, clickedPerson)
-    )
+    const newCardList = updatedClickedPerson(cardList, clickedPerson);
+    setDisplayedCards(getRandomPermutationSizeK(newCardList, listSize))
+    setCardList(newCardList)
     
   }
  
@@ -45,9 +45,9 @@ function App() {
     }
   }
 
-  useEffect(() => {
-    setDisplayedCards(getRandomPermutationSizeK(cardList, listSize))
-  }, [cardList])
+  // useEffect(() => {
+  //   setDisplayedCards(getRandomPermutationSizeK(cardList, listSize))
+  // }, [cardList])
 
   function restartGame(){
     console.log('restarting');
