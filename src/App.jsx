@@ -2,46 +2,11 @@ import { useEffect, useState } from 'react'
 import { CardDeck } from './components/CardDeck'
 import { GameOver } from './components/GameOver'
 import { MusicController } from './components/Sound'
-import Apo from './assets/apo.jpg'
-import Fatih from './assets/fatih.jpg'
-import Nilay from './assets/nilay.jpg'
-import Meryem from './assets/meryem.jpg'
-import Nursema from './assets/nursema.jpg'
-import Pinko from './assets/pinko.jpg'
+
 import { getRandomPermutationSizeK } from './utils/combinatorics'
 import './App.css'
-const originalCardList = [
-  {
-    id: crypto.randomUUID(),
-    name: 'Apo',
-    src: Apo,
-    isClicked: false
-  },
-  {
-    id: crypto.randomUUID(),
-    name: 'Fatih',
-    src: Fatih,
-    isClicked: false
-  },
-  {
-    id: crypto.randomUUID(),
-    name: 'Nilay',
-    src: Nilay,
-    isClicked: false
-  },
-  {
-    id: crypto.randomUUID(),
-    name: 'Nursema',
-    src: Nursema,
-    isClicked: false
-  },
-  {
-    id: crypto.randomUUID(),
-    name: 'Pinko',
-    src: Pinko,
-    isClicked: false
-  }
-]
+
+import { originalCardList } from './api/originalCardList'
 
 function App() {
   const listSize = 3;
