@@ -1,9 +1,9 @@
 import { Card } from "./Card"
-export function CardDeck({cardList, handleClick, isGameOver}){
+export function CardDeck({displayedCards, handleClick, isGameOver}){
     return (
         <div className="card-deck">
 
-            {cardList.map(person => (
+            {displayedCards.map(person => (
                 <Card key={person.id} personInfo={person} onClick={handleClick} isGameOver={isGameOver}></Card>
             ))}
 

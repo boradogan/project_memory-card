@@ -19,32 +19,31 @@ function App() {
   const [maxScore, setMaxScore] = useState(0);
   
   function handleClick(clickedId){
-    console.log(`Clicked at item ${displayedCards.find((item) => item.id === clickedId).name}`);
-
+    
     const clickedPerson = cardList.find((item) => item.id === clickedId)
+    console.log(`Clicked at item ${clickedPerson.name}`);
 
     if(clickedPerson.isClicked) {
-      setIsGameOver(true);
+
+      handleGameFinish({isSuccessful:false});
       console.log('Game Over, that person is clicked before');
-    } else {
-      const newScore = score + 1;
-      setScore(newScore);
-      if(newScore > maxScore) {
-        setMaxScore(newScore);
-      }
-      setCardList(
-        cardList.map(card => card===clickedPerson? {...card, isClicked: true}:card)
-      )
+      return
     }
 
+    handleScoreIncrease(score);
+
+    setCardList(
+      updatedClickedPerson(cardList, clickedPerson)
+    )
+    
   }
-  useEffect(() => {
-    if(score == originalCardList.length){
-      setIsGameOver(true);
+ 
+  function handleGameFinish({isSuccessful}){
+    setIsGameOver(true);
+    if(isSuccessful){
       setIsGameCompletedSuccessfully(true);
     }
-
-  }, [score])
+  }
 
   useEffect(() => {
     setDisplayedCards(getRandomPermutationSizeK(cardList, listSize))
@@ -55,11 +54,27 @@ function App() {
     resetStates();
   }
 
+  function handleScoreIncrease(score){
+    const newScore = score + 1;
+    setScore(newScore);
+    if(newScore == originalCardList.length){
+      handleGameFinish({isSuccessful: true});
+    }
+    if(newScore > maxScore) {
+      setMaxScore(newScore);
+    }
+  }
+
   function resetStates(){
     setCardList(originalCardList);
     setIsGameOver(false);
     setIsGameCompletedSuccessfully(false);
     setScore(0);
+  }
+
+  function updatedClickedPerson(cardList, clickedPerson){
+    //Non mutating method to return the array with the clickedPerson's isClicked property true
+    return cardList.map(card => card===clickedPerson? {...card, isClicked: true}:card);
 
   }
 
@@ -76,7 +91,7 @@ function App() {
       </header>
       <main>
         {isGameOver?<GameOver restartGame={restartGame} isGameCompletedSuccessfully={isGameCompletedSuccessfully}></GameOver>:null}
-        <CardDeck cardList={displayedCards} handleClick={handleClick} isGameOver={isGameOver}></CardDeck>
+        <CardDeck displayedCards={displayedCards} handleClick={handleClick} isGameOver={isGameOver}></CardDeck>
         
       </main>
     </>
