@@ -1,0 +1,112 @@
+#root {
+  width: 80%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  box-sizing: border-box;
+}
+.card-deck{
+  display: flex;
+  justify-content: space-around;
+  gap: 45px;
+  flex-wrap: wrap;
+}
+.card{
+  background-color: rgba(255, 255, 255, 0.505);
+  background-blend-mode: lighten;
+  padding: 20px;
+  border-radius: 40px;
+  cursor: pointer;
+}
+.card img{
+  height: 500px;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+  border-radius: 22px;
+
+}
+.card h4 {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  letter-spacing: 0.08em;
+  font-size: 1.2em;
+}
+
+.card.active {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.card.active:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+.card.active:active {
+  transform: scale(0.98);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+.game-over{
+  position:fixed;
+  top: 0;
+  left:0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+
+  flex: 1;
+
+
+}
+
+.game-over .overlay{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0);
+  opacity: 0.7;
+  z-index: 1;
+}
+
+.game-over-info-container{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 999;
+}
+.game-over-info{
+  position: relative;
+  height: 800px;
+  aspect-ratio: 3/2;
+  background-color: aliceblue;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 2px solid rgb(53, 43, 43);
+  border-radius: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.game-over-text{
+  margin-top: 6%;
+  padding: 10px;
+  background-color: rgba(240, 248, 255, 0.645);
+  color: rgb(42, 11, 11);
+  font-weight: 700;
+  font-size: larger;
+  border-radius: 10px;
+}
+
+.game-over-info button{
+  margin-bottom: 10%;
+  background-color: rgba(253, 228, 85, 0.869);
+  font-weight: 600;
+}
