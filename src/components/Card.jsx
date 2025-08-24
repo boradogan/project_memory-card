@@ -1,7 +1,8 @@
 import BackGroundPattern from '../assets/moroccan-flower-dark.png'
 
 import { getPhoto } from '../api/photoApi';
-export function Card({personInfo, onClick, isGameOver}){
+import { photoApi } from '../api/photoApi';
+export function Card({personInfo, onClick, isGameOver, onLoad}){
     const name = personInfo.name;
     console.log('rendering ', name)
 
@@ -12,7 +13,12 @@ export function Card({personInfo, onClick, isGameOver}){
     }
     return (
         <div className={`card ${!isGameOver?'active':'inactive'}`} onClick={clickHandler} style={{backgroundImage:`url(${BackGroundPattern})`}}>
-            <img src={getPhoto(name)} alt={name} />
+            <img src={photoApi.getPhoto(name)} onLoad={() => {
+                    console.log(`${name} is loaded`);
+                    onLoad(personInfo.id);
+
+                }}/>
+            {/* {photoApi.getPhoto(name)} */}
             <h4>{name}</h4>
         </div>
     )
